@@ -4,11 +4,7 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
-    "@std/async/delay": "jsr:@std/async/delay"
-  },
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "@std/async/delay": "jsr:@std/async/delay",
+    "@/": "./src/"
   }
 }

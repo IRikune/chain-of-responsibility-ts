@@ -1,4 +1,4 @@
-import { createChain, createStep } from "./src/factory.ts";
+import { createChain, createStep } from "@/factory.ts";
 
 type SumContext = {
   a: number;
