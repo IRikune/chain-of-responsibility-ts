@@ -1,0 +1,60 @@
+{
+  "name": "chain-of-responsibility-ts",
+  "version": "1.0.0",
+  "description": "A lightweight, type-safe implementation of the Chain of Responsibility pattern in TypeScript",
+  "main": "dist/mod.js",
+  "types": "dist/mod.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test dist/**/*.test.js",
+    "prepublishOnly": "npm run build",
+    "clean": "rimraf dist",
+    "check": "tsc --noEmit",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write src/**/*.ts"
+  },
+  "keywords": [
+    "chain-of-responsibility",
+    "design-pattern",
+    "typescript",
+    "middleware",
+    "pipeline",
+    "async",
+    "functional",
+    "pattern"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/chain-of-responsibility-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/chain-of-responsibility-ts/issues"
+  },
+  "homepage": "https://github.com/yourusername/chain-of-responsibility-ts#readme",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "rimraf": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
