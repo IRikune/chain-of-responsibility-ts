@@ -1,5 +1,5 @@
 import { Context } from "@/context.ts";
-import { delay } from "@std/async/delay";
+import { delay } from "@/utils/delay.ts";
 import { Next, Step } from "@/types.ts";
 
 export class Chain<

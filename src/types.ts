@@ -1,4 +1,4 @@
-import { Context as ContextClass } from "./context.ts";
+import { Context as ContextClass } from "@/context.ts";
 
 export type Next = () => Promise<void>;
 
