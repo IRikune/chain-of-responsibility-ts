@@ -1,6 +1,6 @@
 import { Chain } from "@/chain.ts";
-import type { Step } from "@/types.ts";
 import { Context } from "@/context.ts";
+import type { Step } from "@/types.ts";
 
 export function createStep<T extends Record<PropertyKey, unknown>>(
   step: Step<T>,

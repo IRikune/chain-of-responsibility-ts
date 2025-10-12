@@ -1,6 +1,6 @@
 import { Context } from "@/context.ts";
 import { delay } from "@/utils/delay.ts";
-import { Next, Step } from "@/types.ts";
+import type { Next, Step } from "@/types.ts";
 
 export class Chain<
   T extends Record<PropertyKey, unknown> = Record<PropertyKey, never>,
