@@ -27,7 +27,7 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
-    "@std/async/delay": "jsr:@std/async/delay",
+    "@std/async": "jsr:@std/async@^1.0.15",
     "@/": "./src/"
   },
   "compilerOptions": {
