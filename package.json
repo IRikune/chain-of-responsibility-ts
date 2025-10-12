@@ -25,18 +25,18 @@
     "pattern"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "your.email@example.com"
+    "name": "Gean Mota",
+    "email": "geanmotas@gmail.com"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/chain-of-responsibility-ts.git"
+    "url": "https://github.com/Irikune/chain-of-responsibility-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/chain-of-responsibility-ts/issues"
+    "url": "https://github.com/Irikune/chain-of-responsibility-ts/issues"
   },
-  "homepage": "https://github.com/yourusername/chain-of-responsibility-ts#readme",
+  "homepage": "https://github.com/Irikune/chain-of-responsibility-ts#readme",
   "files": [
     "dist",
     "README.md",
