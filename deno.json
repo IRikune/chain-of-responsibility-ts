@@ -1,6 +1,6 @@
 {
   "name": "@riku/chain-of-responsibility-ts",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A lightweight, type-safe implementation of the Chain of Responsibility pattern in TypeScript",
   "license": "MIT",
   "repository": {
