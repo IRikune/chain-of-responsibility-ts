@@ -5,7 +5,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A lightweight, type-safe implementation of the **Chain of Responsibility** pattern in TypeScript. Perfect for building middleware systems, request processing pipelines, data transformation workflows, and more.
+A lightweight, type-safe implementation of the **Chain of Responsibility**
+pattern in TypeScript. Perfect for building middleware systems, request
+processing pipelines, data transformation workflows, and more.
 
 ## 🎆 Features
 
@@ -20,17 +22,19 @@ A lightweight, type-safe implementation of the **Chain of Responsibility** patte
 ## 📦 Installation
 
 ### npm
+
 ```bash
 npm install chain-of-responsibility-ts
 ```
 
 ### JSR (Deno/Node.js)
+
 ```bash
 # Deno
-deno add @your-scope/chain-of-responsibility-ts
+deno add @riku/chain-of-responsibility-ts
 
 # Node.js
-npx jsr add @your-scope/chain-of-responsibility-ts
+npx jsr add @riku/chain-of-responsibility-ts
 ```
 
 ## 🚀 Quick Start
@@ -87,6 +91,7 @@ console.log("Is valid:", context.get("isValid"));
 Creates a new chain instance.
 
 **Type Parameters:**
+
 - `T` - The context type (extends `Record<PropertyKey, unknown>`)
 
 **Returns:** `Chain<T>`
@@ -96,48 +101,62 @@ Creates a new chain instance.
 Creates a typed step function.
 
 **Parameters:**
-- `stepFunction: (context: Context<T>, next: Next) => Promise<void>` - The step logic
+
+- `stepFunction: (context: Context<T>, next: Next) => Promise<void>` - The step
+  logic
 
 **Returns:** The same step function with better type inference
 
 ### `Chain<T>` Methods
 
 #### `use(...steps: Step<T>[]): Chain<T>`
+
 Adds one or more steps to the chain.
 
 #### `setDelay(delay: number): Chain<T>`
+
 Sets delay in milliseconds between step executions.
 
 #### `run(): Promise<Context<T>>`
+
 Executes all steps in sequence and returns the context.
 
 #### `getStepCount(): number`
+
 Returns the number of steps in the chain.
 
 #### `getDelay(): number`
+
 Returns the current delay setting.
 
 ### `Context<T>` Methods
 
 #### `set<K>(key: K, value: T[K]): Context<T>`
+
 Sets a value in the context.
 
 #### `get<K>(key: K): T[K]`
+
 Gets a value from the context.
 
 #### `has<K>(key: K): boolean`
+
 Checks if a key exists in the context.
 
 #### `delete<K>(key: K): boolean`
+
 Removes a key from the context.
 
 #### `clear(): void`
+
 Clears all data from the context.
 
 #### `keys(): (keyof T)[]`
+
 Returns all keys in the context.
 
 #### `size(): number`
+
 Returns the number of items in the context.
 
 ## 🎨 Usage Examples
@@ -189,14 +208,16 @@ type DataContext = {
 
 const cleanData = createStep<DataContext>(async (ctx, next) => {
   const raw = ctx.get("rawData");
-  const cleaned = raw.filter(item => item.trim().length > 0);
+  const cleaned = raw.filter((item) => item.trim().length > 0);
   ctx.set("cleanedData", cleaned);
   await next();
 });
 
 const processData = createStep<DataContext>(async (ctx, next) => {
   const cleaned = ctx.get("cleanedData");
-  const processed = cleaned.map(item => parseInt(item, 10)).filter(n => !isNaN(n));
+  const processed = cleaned.map((item) => parseInt(item, 10)).filter((n) =>
+    !isNaN(n)
+  );
   ctx.set("processedData", processed);
   await next();
 });
@@ -206,7 +227,7 @@ const generateResults = createStep<DataContext>(async (ctx, next) => {
   const results = {
     count: data.length,
     sum: data.reduce((a, b) => a + b, 0),
-    average: data.reduce((a, b) => a + b, 0) / data.length
+    average: data.reduce((a, b) => a + b, 0) / data.length,
   };
   ctx.set("results", results);
   await next();
@@ -226,27 +247,28 @@ type ValidationContext = {
   isValid: boolean;
 };
 
-const required = (field: string) => createStep<ValidationContext>(async (ctx, next) => {
-  const data = ctx.get("data");
-  const errors = ctx.get("errors") || [];
-  
-  if (!data[field]) {
-    errors.push(`${field} is required`);
-    ctx.set("errors", errors);
-  }
-  
-  await next();
-});
+const required = (field: string) =>
+  createStep<ValidationContext>(async (ctx, next) => {
+    const data = ctx.get("data");
+    const errors = ctx.get("errors") || [];
+
+    if (!data[field]) {
+      errors.push(`${field} is required`);
+      ctx.set("errors", errors);
+    }
+
+    await next();
+  });
 
 const email = createStep<ValidationContext>(async (ctx, next) => {
   const data = ctx.get("data");
   const errors = ctx.get("errors") || [];
-  
+
   if (data.email && !/\S+@\S+\.\S+/.test(data.email)) {
     errors.push("Invalid email format");
     ctx.set("errors", errors);
   }
-  
+
   await next();
 });
 
@@ -278,6 +300,7 @@ deno run examples/data-pipeline.ts
 ## 🛠️ Development
 
 ### For Deno
+
 ```bash
 # Run examples
 deno task dev
@@ -293,6 +316,7 @@ deno task lint
 ```
 
 ### For Node.js
+
 ```bash
 # Install dependencies
 npm install
@@ -335,6 +359,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 💬 Support
 
 If you have questions or need help, please:
+
 1. Check the [examples](./examples) directory
 2. Open an issue on GitHub
 3. Read the API documentation above
