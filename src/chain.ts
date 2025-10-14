@@ -18,8 +18,13 @@ export class Chain<
     return this;
   }
 
-  public async run(): Promise<Context<T>> {
+  public async run(initialContext: T): Promise<Context<T>> {
     const ctx = new Context<T>();
+
+    if (initialContext) {
+      const entries = Object.entries(initialContext);
+      entries.forEach(([key, value]) => ctx.set(key, value as T[keyof T]));
+    }
 
     const dispatch = async (index: number) => {
       if (index >= this.steps.length) return;
