@@ -18,7 +18,7 @@ export class Chain<
     return this;
   }
 
-  public async run(initialContext: T): Promise<Context<T>> {
+  public async run(initialContext: Partial<T> = {}): Promise<Context<T>> {
     const ctx = new Context<T>();
 
     if (initialContext) {
