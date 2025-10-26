@@ -1,6 +1,6 @@
 import { Context } from "@/context.ts";
 import { delay } from "@/utils/delay.ts";
-import type { Next, Step } from "@/types.ts";
+import type { Next, Retry, Step } from "@/types.ts";
 
 export class Chain<
   T extends Record<PropertyKey, unknown> = Record<PropertyKey, never>,
@@ -30,12 +30,13 @@ export class Chain<
       if (index >= this.steps.length) return;
 
       const next: Next = () => dispatch(index + 1);
+      const retry: Retry = () => dispatch(index);
 
       const step = this.steps[index];
 
       if (this.delay > 0 && index > 0) await delay(this.delay);
 
-      await step(ctx, next);
+      await step(ctx, next, retry);
     };
 
     await dispatch(0);
