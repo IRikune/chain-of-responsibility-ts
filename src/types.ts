@@ -11,6 +11,8 @@ export type Step<T extends Record<PropertyKey, unknown>> = (
   retry: Retry,
 ) => Promise<void>;
 
-export type Context = typeof ContextClass;
+export type Context<T extends Record<PropertyKey, unknown>> = ContextClass<
+  T
+>;
 
 export type Chain = typeof ChainClass;
