@@ -24,12 +24,21 @@ export class Chain<
     return this;
   }
 
-  public async run(initialContext: Partial<T> = {}): Promise<Context<T>> {
-    const ctx = new Context<T>();
+  public async run(
+    initialContext: Partial<T> | Context<T> = {},
+  ): Promise<Context<T>> {
+    let ctx: Context<T>;
 
-    if (initialContext) {
-      const entries = Object.entries(initialContext);
-      entries.forEach(([key, value]) => ctx.set(key, value as T[keyof T]));
+    const isContext = initialContext instanceof Context;
+
+    if (!isContext) {
+      ctx = new Context<T>();
+      if (initialContext) {
+        const entries = Object.entries(initialContext as Partial<T>);
+        entries.forEach(([key, value]) => ctx.set(key, value as T[keyof T]));
+      }
+    } else {
+      ctx = initialContext;
     }
 
     if (this.isconcurrent) {
