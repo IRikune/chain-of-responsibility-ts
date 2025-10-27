@@ -1,5 +1,5 @@
 {
-  "version": "1.3.3",
+  "version": "1.4.0",
   "name": "@riku/chain-of-responsibility-ts",
   "description": "A lightweight, type-safe implementation of the Chain of Responsibility pattern in TypeScript",
   "license": "MIT",
