@@ -7,6 +7,12 @@ export class Chain<
 > {
   private delay = 0;
   private steps: Step<T>[] = [];
+  private isconcurrent = false;
+
+  public concurrent(): this {
+    this.isconcurrent = true;
+    return this;
+  }
 
   public use(...steps: Step<T>[]): this {
     this.steps.push(...steps);
@@ -24,6 +30,19 @@ export class Chain<
     if (initialContext) {
       const entries = Object.entries(initialContext);
       entries.forEach(([key, value]) => ctx.set(key, value as T[keyof T]));
+    }
+
+    if (this.isconcurrent) {
+      const allPromises = this.steps.map((step) => {
+        const next: Next = () => Promise.resolve();
+        const retry: Retry = () => Promise.resolve();
+
+        return step(ctx, next, retry);
+      });
+
+      await Promise.all(allPromises);
+
+      return ctx;
     }
 
     const dispatch = async (index: number) => {
